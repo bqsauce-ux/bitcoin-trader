@@ -24,6 +24,9 @@ class LLMAdvisor:
 
         self.api_key = os.getenv("LLM_API_KEY")
 
+        if self.api_key:
+            self.api_key = self.api_key.strip()
+        
         if not self.api_key:
             raise ValueError(
                 "LLM_API_KEY is missing from .env"
