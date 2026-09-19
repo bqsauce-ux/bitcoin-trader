@@ -6,9 +6,6 @@ from urllib.request import urlopen
 
 # Allow the notebook-style imports below to work when this file is run as:
 # python -m app.trading_agent
-APP_DIR = Path(__file__).resolve().parent
-if str(APP_DIR) not in sys.path:
-    sys.path.insert(0, str(APP_DIR))
 
 from risk_manager import RiskManager
 from paper_trading_engine import PaperTradingEngine
