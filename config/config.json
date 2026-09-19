@@ -1,0 +1,45 @@
+{
+  "config_source": {
+    "type": "google_sheet",
+    "spreadsheet_id": "1LujvGENkVKwebeUViNUPiDH2G9p_IjCEoU06ahjzrPw",
+    "worksheet_name": "TradingConfig",
+    "refresh_interval_minutes": 60,
+    "fallback_enabled": true,
+    "fallback_file": "config/config.json"
+  },
+
+  "application": {
+    "name": "bitcoin-trading-agent",
+    "environment": "development",
+    "paper_trading": true,
+    "log_level": "INFO"
+  },
+
+  "budget": {
+    "total_usd": 10000,
+    "reserve_cash_pct": 20
+  },
+
+  "dca": {
+    "enabled": true,
+    "drop_trigger_pct": 3.0,
+    "buy_amount_usd": 500,
+    "time_interval_hours": 24
+  },
+
+  "atr": {
+    "enabled": true,
+    "period": 14,
+    "multiplier": 1.5
+  },
+
+  "strategy": {
+    "mode": "hybrid",
+    "llm_enabled": true
+  },
+
+  "risk": {
+    "max_position_pct": 30,
+    "portfolio_stop_loss_pct": 25
+  }
+}
