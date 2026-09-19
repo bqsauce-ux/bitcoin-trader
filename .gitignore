@@ -3,6 +3,7 @@
 .env.*
 credentials/
 *.json
+!config/config.json
 
 # Python
 __pycache__/
