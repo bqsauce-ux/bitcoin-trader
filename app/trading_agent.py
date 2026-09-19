@@ -339,17 +339,8 @@ class TradingAgent:
         )
 
         self.logger.log_trade(trade)
-        trade = self.engine.sell_btc(
-            btc_quantity=btc_quantity,
-            btc_price=self.last_price,
-            strategy=strategy,
-            reason=reason
-        )
-        
-        self.logger.log_trade(trade)
-        
         self.telegram.send_trade_notification(trade)
-        
+
         return trade
         
 
