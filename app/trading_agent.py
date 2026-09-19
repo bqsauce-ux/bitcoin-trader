@@ -16,6 +16,7 @@ from .strategies.atr_strategy import ATRStrategy
 
 from .telegram_notifier import TelegramNotifier
 from .llm_advisor import LLMAdvisor
+from .config_loader import get_google_sheet_config, convert_config_values
 
 class TradingAgent:
     """
@@ -416,7 +417,7 @@ def get_current_btc_price():
 
 def main():
     """Run one trading-agent cycle for GitHub Actions."""
-    from config_loader import get_google_sheet_config, convert_config_values
+   
     rows = get_google_sheet_config()
     config = convert_config_values(rows)
     agent = TradingAgent(config)
