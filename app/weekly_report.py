@@ -3,9 +3,9 @@ from pathlib import Path
 import sys
 
 
-from trade_logger import TradeLogger
-from trading_agent import TradingAgent
-from config_loader import get_google_sheet_config, convert_config_values
+from .trade_logger import TradeLogger
+from .trading_agent import TradingAgent
+from .config_loader import get_google_sheet_config, convert_config_values
 
 
 class WeeklyReport:
