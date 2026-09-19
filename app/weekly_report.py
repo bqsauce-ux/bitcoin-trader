@@ -2,6 +2,9 @@ from datetime import datetime
 from pathlib import Path
 import sys
 
+import os
+import smtplib
+from email.message import EmailMessage
 
 from .trade_logger import TradeLogger
 from .trading_agent import TradingAgent, get_current_btc_price
@@ -115,6 +118,34 @@ def create_trading_agent():
     config = convert_config_values(rows)
     return TradingAgent(config)
 
+def send_email(report):
+    smtp_username = os.getenv("SMTP_USERNAME")
+    smtp_password = os.getenv("SMTP_PASSWORD")
+    email_to = os.getenv("EMAIL_TO")
+
+    if not smtp_username:
+        raise ValueError("SMTP_USERNAME is missing.")
+
+    if not smtp_password:
+        raise ValueError("SMTP_PASSWORD is missing.")
+
+    if not email_to:
+        raise ValueError("EMAIL_TO is missing.")
+
+    message = EmailMessage()
+
+    message["Subject"] = "Bitcoin Trading Agent - Weekly Performance Report"
+    message["From"] = smtp_username
+    message["To"] = email_to
+
+    message.set_content(report)
+
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        server.starttls()
+        server.login(smtp_username, smtp_password)
+        server.send_message(message)
+
+    print(f"Weekly report sent to {email_to}")
 
 def main():
     agent = create_trading_agent()
@@ -128,7 +159,7 @@ def main():
     report_path.write_text(report + "\n", encoding="utf-8")
 
     print(f"\nReport saved to: {report_path}")
-
+    send_email(report)
 
 if __name__ == "__main__":
     main()
