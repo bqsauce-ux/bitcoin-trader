@@ -26,6 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create Google credentials
+        run: |
+          mkdir -p credentials
+          echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > credentials/google-service-account.json
+    
       - name: Run Bitcoin Trading Agent
         env:
           COINBASE_API_KEY: ${{ secrets.COINBASE_API_KEY }}
