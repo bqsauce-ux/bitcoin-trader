@@ -1,4 +1,14 @@
 from datetime import datetime
+from pathlib import Path
+import json
+import sys
+from urllib.request import urlopen
+
+# Allow the notebook-style imports below to work when this file is run as:
+# python -m app.trading_agent
+APP_DIR = Path(__file__).resolve().parent
+if str(APP_DIR) not in sys.path:
+    sys.path.insert(0, str(APP_DIR))
 
 from risk_manager import RiskManager
 from paper_trading_engine import PaperTradingEngine
@@ -395,3 +405,32 @@ class TradingAgent:
                 self.logger.get_trades()
             )
         }
+
+
+def get_current_btc_price():
+    """Get the current BTC/USD spot price from Coinbase's public API."""
+    with urlopen(
+        "https://api.coinbase.com/v2/prices/BTC-USD/spot",
+        timeout=15,
+    ) as response:
+        data = json.load(response)
+    return float(data["data"]["amount"])
+
+
+def main():
+    """Run one trading-agent cycle for GitHub Actions."""
+    from config_loader import get_google_sheet_config, convert_config_values
+    rows = get_google_sheet_config()
+    config = convert_config_values(rows)
+    agent = TradingAgent(config)
+    price = get_current_btc_price()
+    print(f"Current BTC price: ${price:,.2f}")
+    result = agent.process_market_data(price=price)
+    print("Trading result:")
+    print(result)
+    print("Portfolio status:")
+    print(agent.get_status())
+
+
+if __name__ == "__main__":
+    main()
