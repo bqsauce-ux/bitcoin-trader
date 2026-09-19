@@ -3,7 +3,7 @@ name: Bitcoin Trading Agent
 on:
   # Run every 30 minutes
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/1 * * * *"
 
   # Allow manual execution from GitHub
   workflow_dispatch:
