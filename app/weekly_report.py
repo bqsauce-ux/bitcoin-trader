@@ -4,8 +4,9 @@ import sys
 
 
 from .trade_logger import TradeLogger
-from .trading_agent import TradingAgent
+from .trading_agent import TradingAgent, get_current_btc_price
 from .config_loader import get_google_sheet_config, convert_config_values
+
 
 
 class WeeklyReport:
