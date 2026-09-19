@@ -9,3 +9,4 @@ ta==0.11.0
 openai==1.102.0
 chromadb==1.0.20
 google-auth
+google-api-python-client
