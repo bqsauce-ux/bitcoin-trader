@@ -17,11 +17,20 @@ class WeeklyReport:
         self.logger = TradeLogger()
 
     def generate_report(self):
+        #btc_price = get_current_btc_price()
+        #self.agent.last_price = btc_price
+
+        #portfolio = self.agent.get_portfolio(btc_price=btc_price)
+        #portfolio = self.agent.get_portfolio()
+
         btc_price = get_current_btc_price()
         self.agent.last_price = btc_price
-
-        portfolio = self.agent.get_portfolio(btc_price=btc_price)
-        #portfolio = self.agent.get_portfolio()
+    
+        portfolio = self.agent.get_portfolio()
+    
+        # Make sure the report has the current BTC price
+        portfolio["btc_price"] = btc_price
+    
         trades = self.logger.get_trades()
 
         total_trades = len(trades)
