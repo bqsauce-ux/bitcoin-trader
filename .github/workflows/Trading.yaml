@@ -30,7 +30,8 @@ jobs:
         run: |
           mkdir -p credentials
           echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > credentials/google-service-account.json
-
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
      
       - name: Run Bitcoin Trading Agent
         env:
