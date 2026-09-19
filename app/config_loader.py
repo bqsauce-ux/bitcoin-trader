@@ -10,14 +10,20 @@ SCOPES = [
 ]
 
 
-CONFIG_FILE = "../config/config.json"
+#CONFIG_FILE = "../config/config.json"
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+CONFIG_FILE = BASE_DIR / "config" / "config.json"
+
+CREDENTIALS_FILE = (
+    BASE_DIR / "credentials" / "google-service-account.json"
+)
 #BASE_DIR = Path(__file__).resolve().parent.parent
 #CONFIG_FILE = BASE_DIR / "config" / "config.json"
 
-CREDENTIALS_FILE = (
-    "../credentials/google-service-account.json"
-)
+#CREDENTIALS_FILE = (
+#    "../credentials/google-service-account.json"
+#)
 
 
 def load_local_config():
