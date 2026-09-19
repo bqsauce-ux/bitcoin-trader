@@ -1,7 +1,9 @@
 from pathlib import Path
 import csv
 from datetime import datetime
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 class TradeLogger:
     """
@@ -35,8 +37,9 @@ class TradeLogger:
         log_directory : str
             Directory where trades.csv will be stored.
         """
-
-        self.log_directory = Path(log_directory)
+        BASE_DIR = Path(__file__).resolve().parent.parent
+        self.log_directory = BASE_DIR / "logs"
+        #self.log_directory = Path(log_directory)
 
         # Create logs directory
         self.log_directory.mkdir(
