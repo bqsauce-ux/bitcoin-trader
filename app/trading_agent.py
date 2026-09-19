@@ -7,15 +7,15 @@ from urllib.request import urlopen
 # Allow the notebook-style imports below to work when this file is run as:
 # python -m app.trading_agent
 
-from risk_manager import RiskManager
-from paper_trading_engine import PaperTradingEngine
-from trade_logger import TradeLogger
+from .risk_manager import RiskManager
+from .paper_trading_engine import PaperTradingEngine
+from .trade_logger import TradeLogger
 
-from strategies.dca_strategy import DCAStrategy
-from strategies.atr_strategy import ATRStrategy
+from .strategies.dca_strategy import DCAStrategy
+from .strategies.atr_strategy import ATRStrategy
 
-from telegram_notifier import TelegramNotifier
-from llm_advisor import LLMAdvisor
+from .telegram_notifier import TelegramNotifier
+from .llm_advisor import LLMAdvisor
 
 class TradingAgent:
     """
