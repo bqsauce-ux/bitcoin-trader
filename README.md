@@ -88,6 +88,9 @@ bitcoin-trader/
                   ┌─────────────┐           ┌────────────┐
                   │ Trade Logger│           │  Telegram  │
                   └─────────────┘           └────────────┘
+## Architecture
+
+![Bitcoin Trading Agent Architecture](mermaid-diagram.png)
 ## Key Components
 
 ### Trading Agent
