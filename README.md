@@ -89,7 +89,7 @@ bitcoin-trader/
                   │ Trade Logger│           │  Telegram  │
                   └─────────────┘           └────────────┘
 ## Architecture
-
+The Bitcoin Trading Agent uses a layered architecture that connects a React/Vite frontend, FastAPI backend, trading logic, and external services. The React dashboard, running on Vite at port 5173, communicates with the FastAPI backend on port 8000 through REST API endpoints such as /api/dashboard and /api/btc. The backend retrieves Bitcoin market data from the Coinbase API and calculates technical indicators including RSI, MACD, ATR, and volume ratio, which are returned to the dashboard as JSON. Separately, the Trading Agent acts as the main orchestration layer, combining DCA and ATR trading strategies with an LLM Advisor to analyze market conditions and generate proposed trades. Before any trade is executed, the Risk Manager evaluates the trade against configured risk rules, after which approved trades are processed by the Paper Trading Engine rather than placing real cryptocurrency orders. Trades are recorded by the Trade Logger and notifications can be sent through Telegram, while configuration is loaded from Google Sheets and automated execution can be triggered through GitHub Actions. Overall, the architecture separates the user interface, API layer, trading intelligence, risk management, and external services while keeping the system explicitly paper-trading only.
 ![Bitcoin Trading Agent Architecture](mermaid-diagram.png)
 ## Key Components
 
